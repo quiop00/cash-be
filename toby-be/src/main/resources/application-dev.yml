@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/toby
+    username: root
+    password: M9p19MRqkz1z
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  data:
+    redis:
+      host: localhost          # Redis server host
+      port: 6379               # Redis server port
+      password:                # Redis server password (if required)
+      database: 0              # Redis database index (0 by default)
+  kafka:
+    server: localhost:29092
+    mail-group-id: mail_group
+    verify-email: verify-email
+    verify-email-success: verify-email-success
+  # cache:
+  #  type: redis       
