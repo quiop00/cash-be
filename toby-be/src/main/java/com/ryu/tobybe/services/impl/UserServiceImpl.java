@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import com.ryu.common.entity.PaymentDetail;
 import com.ryu.common.entity.UserEntity;
 import com.ryu.common.enums.EStatus;
+import com.ryu.common.repository.UserRepository;
 import com.ryu.tobybe.models.PaymentInfo;
 import com.ryu.tobybe.models.UserDto;
-import com.ryu.tobybe.repositories.UserRepository;
 import com.ryu.tobybe.services.UserService;
 
 @Service
@@ -88,6 +88,7 @@ public class UserServiceImpl implements UserService {
     private UserDto covertEntityToDto(UserEntity entity) {
         return UserDto.builder()
                 .id(entity.getId())
+                .username(entity.getUsername())
                 .email(entity.getEmail())
                 .refer(entity.getRefer())
                 .status(entity.getStatus())

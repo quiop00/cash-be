@@ -22,13 +22,13 @@ public class SecurityConfiguration {
     private final JwtAuthFilter jwtAuthFilter;
 
     final String[] endPoints = {
-        "api/auth/**"
+        "api/auth/**",
+        "api/auth/admin/**"
     };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http 
-                .cors(cors -> cors.disable())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
@@ -42,7 +42,5 @@ public class SecurityConfiguration {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-            
-
     }
 }

@@ -12,8 +12,10 @@ import com.ryu.tobybe.services.SettingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController("/settings")
+@RestController
+@RequestMapping("/api/settings")
 public class AppSettingController {
     
     @Autowired

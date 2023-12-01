@@ -10,7 +10,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.ryu.common.enums.ERole;
 import com.ryu.common.sercurity.JwtAuthFilter;
 
 @Configuration
@@ -25,19 +24,19 @@ public class SecurityConfiguration {
         "/swagger-ui/**",
         "/swagger-ui.html",
         "/images/**",
-        "/users/**",
     };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http 
-                .cors(cors -> cors.disable())
+        http
                 .csrf(csrf -> csrf.disable())
+
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(endPoints).permitAll()
-                                .anyRequest().hasAnyAuthority(ERole.ROLE_ADMIN.name(), ERole.ROLE_USER.name())
+                                .anyRequest().authenticated()
                 )
+                .formLogin(login -> login.disable())
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling
                                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))

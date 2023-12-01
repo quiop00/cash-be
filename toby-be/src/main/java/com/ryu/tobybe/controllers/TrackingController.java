@@ -5,12 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ryu.tobybe.models.TrackResDto;
 import com.ryu.tobybe.services.TrackService;
 
-@RestController("/tracking")
+@RestController
+@RequestMapping("/api/tracking")
 public class TrackingController {
 
     @Autowired

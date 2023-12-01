@@ -9,19 +9,21 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ryu.common.sercurity.AuthUserDetail;
 import com.ryu.tobybe.models.PaymentDto;
 import com.ryu.tobybe.services.PaymentService;
 
-@RestController("/payments")
+@RestController
+@RequestMapping("/api/payments")
 public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
     
-    @GetMapping(value = "/")
+    @GetMapping("")
     public ResponseEntity<?> getPaymentRequests() {
         List<PaymentDto> result = paymentService.getPaymentRequests();
         return new ResponseEntity<>(result, HttpStatus.OK);

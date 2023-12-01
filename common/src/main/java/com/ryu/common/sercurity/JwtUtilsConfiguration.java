@@ -10,7 +10,7 @@ import com.ryu.common.utils.JwtUtils;
 public class JwtUtilsConfiguration {
     
     @Bean
-    public JwtUtils geJwtUtils(
+    public JwtUtils getJwtUtils(
         @Value("${toby.auth.token.sign-key}") String signKey,
         @Value("${toby.auth.token.valid-time}") Long validTime
     ) throws Exception {

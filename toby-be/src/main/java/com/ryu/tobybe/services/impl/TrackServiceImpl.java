@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.ryu.common.entity.TrackingEntity;
 import com.ryu.common.entity.UserEntity;
+import com.ryu.common.repository.UserRepository;
 import com.ryu.tobybe.models.TrackDto;
 import com.ryu.tobybe.models.TrackResDto;
 import com.ryu.tobybe.models.UserDto;
-import com.ryu.tobybe.repositories.UserRepository;
 import com.ryu.tobybe.services.TrackService;
 
 @Service

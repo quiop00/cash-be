@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import com.ryu.common.entity.GameHistory;
 import com.ryu.common.entity.UserEntity;
 import com.ryu.common.entity.WheelRewardEntity;
+import com.ryu.common.repository.UserRepository;
 import com.ryu.tobybe.models.SpinDto;
 import com.ryu.tobybe.repositories.SpinRepository;
-import com.ryu.tobybe.repositories.UserRepository;
 import com.ryu.tobybe.services.SpinService;
 
 @Service

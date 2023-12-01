@@ -1,8 +1,10 @@
 package com.ryu.tobybe.controllers;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/install")
+@RestController
+@RequestMapping("/api/install")
 public class InstallController {
     
 }

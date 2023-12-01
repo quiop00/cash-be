@@ -43,4 +43,13 @@ public class JwtUtils {
         return Jwts.builder().setSubject(sub).setIssuedAt(new Date(exp.toEpochMilli()))
                 .setExpiration(new Date(exp.toEpochMilli() + validSeconds * 1000)).signWith(key).compact();
     }
+
+    public String getSub(String jwt) {
+        try {
+            Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
+            return claims.getSubject();
+        } catch (JwtException e) {
+            return null;
+        }
+    }
 }

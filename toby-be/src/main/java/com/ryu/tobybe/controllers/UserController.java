@@ -5,26 +5,33 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ryu.common.models.BaseResponse;
 import com.ryu.tobybe.models.PaymentInfo;
 import com.ryu.tobybe.models.UserDto;
 import com.ryu.tobybe.services.UserService;
 
-@RestController("/users")
+@RestController
+@RequestMapping("api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("")
+    @GetMapping
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getVerifyUsers() {
         List<UserDto> users = userService.getVerifyUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        BaseResponse<List<UserDto>> res = new BaseResponse<>(users, 200,"");
+
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @GetMapping("/paymentInfo/{id}")

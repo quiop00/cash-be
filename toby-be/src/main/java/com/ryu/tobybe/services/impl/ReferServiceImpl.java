@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.ryu.common.entity.ReferQuest;
 import com.ryu.common.entity.UserEntity;
+import com.ryu.common.repository.UserRepository;
 import com.ryu.tobybe.models.ReferDto;
 import com.ryu.tobybe.models.ReferQuestDto;
 import com.ryu.tobybe.repositories.ReferQuestRepository;
-import com.ryu.tobybe.repositories.UserRepository;
+
 import com.ryu.tobybe.services.ReferService;
 
 @Service
