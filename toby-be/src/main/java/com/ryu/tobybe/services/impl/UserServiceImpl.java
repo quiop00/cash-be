@@ -22,21 +22,32 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public boolean updateStatus(long id, boolean isBlock) throws Exception {
+    public String updateStatus(long id) throws Exception {
         UserEntity user = userRepository.findById(id).get();
 
         if (user == null) {
             throw new Exception();
         }
 
-        user.setStatus(isBlock && user.getStatus() == EStatus.ACTIVE ? EStatus.BLOCKED : EStatus.ACTIVE);
-        return true;
+        user.setStatus(user.getStatus() == EStatus.ACTIVE ? EStatus.BLOCKED : EStatus.ACTIVE);
+        user = userRepository.save(user);
+
+        return user.getStatus().name();
     }
 
     @Override
     public List<UserDto> getVerifyUsers() {
         return userRepository.findAllByStatusIn(Arrays.asList(EStatus.ACTIVE, EStatus.BLOCKED)).stream()
                 .map(e -> covertEntityToDto(e)).collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDto getUser(long id) throws Exception{
+        UserEntity user = userRepository.findById(id).get();
+        if (user == null) {
+            throw new Exception("USER NOT FOUND");
+        }
+        return covertEntityToDto(user);
     }
 
     @Override

@@ -10,9 +10,11 @@ import com.ryu.tobybe.models.UserDto;
 @Service
 public interface UserService {
 
-    public boolean updateStatus(long id, boolean isBlock) throws Exception;
+    public String updateStatus(long id) throws Exception;
 
     public List<UserDto> getVerifyUsers();
+
+    public UserDto getUser(long id) throws Exception;
 
     public PaymentInfo getPaymentInfo(long id);
 
