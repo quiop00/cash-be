@@ -13,7 +13,6 @@ import com.ryu.auth.models.LoginResponse;
 import com.ryu.auth.models.Registration;
 import com.ryu.auth.services.AuthService;
 import com.ryu.common.models.BaseResponse;
-import com.ryu.common.models.BaseResponse;
 import com.ryu.common.models.RequestOtp;
 
 import jakarta.validation.Valid;
