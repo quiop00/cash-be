@@ -26,6 +26,15 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    public PaymentDto getPaymentRequestById(long id) throws Exception{
+        PaymentRequest request = paymentRespositoty.findById(id).get();
+        if (request == null) {
+            throw new Exception("DATA NOT FOUND");
+        }
+        return convertEntityToDto(request);
+    }
+
+    @Override
     public List<PaymentDto> getPaymentHistory(long userId) {
         List<PaymentRequest> paymentRequests = paymentRespositoty.findAllByUserId(userId);
 
@@ -33,10 +42,10 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public boolean changeStatus(long paymentId, boolean isAccepted) {
+    public boolean changeStatus(long paymentId, PaymentStatus status) {
         PaymentRequest paymentRequest = paymentRespositoty.findById(paymentId).get();
         if (paymentRequest != null) {
-            paymentRequest.setStatus(isAccepted ? PaymentStatus.COMPLETED: PaymentStatus.CHECKING);
+            paymentRequest.setStatus(status);
             paymentRespositoty.save(paymentRequest);
             return true;
         }
