@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ryu.common.entity.PaymentDetail;
 import com.ryu.common.entity.UserEntity;
 import com.ryu.common.enums.EStatus;
 import com.ryu.common.repository.UserRepository;
+import com.ryu.tobybe.models.PasswordRequest;
 import com.ryu.tobybe.models.PaymentInfo;
 import com.ryu.tobybe.models.UserDto;
 import com.ryu.tobybe.services.UserService;
@@ -20,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public String updateStatus(long id) throws Exception {
@@ -42,7 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUser(long id) throws Exception{
+    public UserDto getUser(long id) throws Exception {
         UserEntity user = userRepository.findById(id).get();
         if (user == null) {
             throw new Exception("USER NOT FOUND");
@@ -94,6 +99,19 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userEntity);
 
         return data;
+    }
+
+    @Override
+    public boolean changePassword(long userId, PasswordRequest data) {
+        UserEntity user = userRepository.findById(userId).get();
+        if (user != null) {
+            if (passwordEncoder.matches(data.getOldPassword(), user.getPassword())) {
+                user.setPassword(passwordEncoder.encode(data.getNewPassword()));
+                userRepository.save(user);
+                return true;
+            }
+        }
+        return false;
     }
 
     private UserDto covertEntityToDto(UserEntity entity) {
