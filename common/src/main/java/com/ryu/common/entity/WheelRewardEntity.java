@@ -2,6 +2,9 @@ package com.ryu.common.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +15,11 @@ import lombok.Setter;
 @Builder
 @Setter
 @Getter
-public class WheelRewardEntity extends BaseEntity {
+public class WheelRewardEntity{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected long id;
 
     @Column(name = "title")
     private String title;

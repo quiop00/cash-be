@@ -8,6 +8,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +19,23 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
-public class SystemNotification extends NotificationEntity {
+public class SystemNotification {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column
+    protected String title;
+
+    @Column
+    protected String content;
+
+    @Column
+    protected String image;
+
+    @Column
+    protected String smallIcon;
     
     @Column
     private String status;

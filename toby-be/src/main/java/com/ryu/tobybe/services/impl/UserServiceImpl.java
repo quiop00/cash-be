@@ -2,16 +2,17 @@ package com.ryu.tobybe.services.impl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ryu.common.entity.PaymentDetail;
 import com.ryu.common.entity.UserEntity;
 import com.ryu.common.enums.EStatus;
 import com.ryu.common.repository.UserRepository;
+import com.ryu.common.sercurity.CustomPasswordEncoder;
 import com.ryu.tobybe.models.PasswordRequest;
 import com.ryu.tobybe.models.PaymentInfo;
 import com.ryu.tobybe.models.UserDto;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private CustomPasswordEncoder passwordEncoder;
 
     @Override
     public String updateStatus(long id) throws Exception {
@@ -48,13 +49,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUser(long id) throws Exception {
-        UserEntity user = userRepository.findById(id).get();
-        if (user == null) {
+        Optional<UserEntity> user = userRepository.findById(id);
+        if (!user.isPresent()) {
             throw new Exception("USER NOT FOUND");
         }
-        return covertEntityToDto(user);
+        return covertEntityToDto(user.get());
     }
 
+    // TODO FIX NOT FOUND BY ID
     @Override
     public PaymentInfo getPaymentInfo(long id) {
         UserEntity user = userRepository.findById(id).get();

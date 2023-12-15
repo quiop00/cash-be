@@ -11,8 +11,6 @@ import com.ryu.common.repository.UserRepository;
 import com.ryu.common.utils.JsonConverter;
 import com.ryu.common.utils.JwtUtils;
 
-import lombok.RequiredArgsConstructor;
-
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

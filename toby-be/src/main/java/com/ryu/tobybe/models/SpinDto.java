@@ -20,13 +20,14 @@ public class SpinDto {
 
     public WheelRewardEntity toEntity() {
         WheelRewardEntity entity = WheelRewardEntity.builder()
+            .id(id)
             .uid(uid)
             .point(point)
             .title(title)
             .type(isPoint)
             .build();
 
-        entity.setId(id);
+        // entity.setId(id);
 
         return entity;
     }
