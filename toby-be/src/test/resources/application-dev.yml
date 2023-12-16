@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test-earn-be
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console:
+      enabled: true
+  data:
+    redis:
+      host: localhost          # Redis server host
+      port: 6379               # Redis server port
+      password:                # Redis server password (if required)
+      database: 0              # Redis database index (0 by default)
+  kafka:
+    server: localhost:29092
+    mail-group-id: mail_group
+    verify-email: verify-email
+    verify-email-success: verify-email-success
