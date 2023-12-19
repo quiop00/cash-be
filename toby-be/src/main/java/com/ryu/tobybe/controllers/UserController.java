@@ -24,7 +24,6 @@ import com.ryu.tobybe.services.UserService;
 
 @RestController
 @RequestMapping("api/users")
-@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
@@ -88,7 +87,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("change-password")
+    @PutMapping("/change-password")
     public ResponseEntity<?> changePassword(@AuthenticationPrincipal AuthUserDetail user, @RequestBody PasswordRequest data) {
         boolean result = userService.changePassword(user.getId(), data);
         BaseResponse<Boolean> res = new BaseResponse<>(result, 200, "");

@@ -121,6 +121,7 @@ public class UserServiceImpl implements UserService {
                 .id(entity.getId())
                 .username(entity.getUsername())
                 .email(entity.getEmail())
+                .role(entity.getRole())
                 .refer(entity.getRefer())
                 .status(entity.getStatus())
                 .image(entity.getImage())

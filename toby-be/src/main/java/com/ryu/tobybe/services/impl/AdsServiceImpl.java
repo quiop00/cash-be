@@ -15,7 +15,7 @@ public class AdsServiceImpl implements AdsService {
 
     @Override
     public AdsEntity getAdsConfig() {
-        return adsRepository.findAll().stream().findFirst().get();
+        return adsRepository.findAll().stream().findFirst().orElse(null);
     }
 
     @Override

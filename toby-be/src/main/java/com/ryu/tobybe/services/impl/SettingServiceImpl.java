@@ -27,7 +27,7 @@ public class SettingServiceImpl implements SettingService{
 
     @Override
     public RewardDto getRewardConfig() {
-        RewardSettingEntity entity = rewardRepository.findAll().stream().findFirst().get();
+        RewardSettingEntity entity = rewardRepository.findAll().stream().findFirst().orElse(null);
         if (entity != null) {
             return convertRewardEntityToDto(entity);
         }
@@ -45,7 +45,7 @@ public class SettingServiceImpl implements SettingService{
 
     @Override
     public OfferwallDto getOfferwallConfig() {
-        OfferwallEntity entity = offerwallRepository.findAll().stream().findFirst().get();
+        OfferwallEntity entity = offerwallRepository.findAll().stream().findFirst().orElse(null);;
          if (entity != null) {
             return convertOfferwallEntityToDto(entity);
         }
@@ -63,7 +63,7 @@ public class SettingServiceImpl implements SettingService{
 
     @Override
     public AppSecurityEntity getSecureConfig() {
-       return secureRepository.findAll().stream().findFirst().get();
+       return secureRepository.findAll().stream().findFirst().orElse(null);
     }
 
     @Override
