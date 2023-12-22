@@ -1,0 +1,22 @@
+server:
+  port: 8088
+
+spring:
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      routes:
+      - id: auth-route
+        uri: http://localhost:8080
+        predicates:
+        - Path=/auth-service/api/**
+        filters:
+        - StripPrefix=1
+      - id: be-route
+        uri: http://localhost:8082
+        predicates:
+        - Path=/be-service/api/**
+        filters:
+        - StripPrefix=2
+
